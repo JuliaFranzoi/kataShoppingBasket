@@ -22,10 +22,5 @@ public class Customer {
         return this.card;
     }
     
-
-    // public Cart getCart(){
-    //     return this.cart;
-    // } 
-    
     
 }

@@ -11,6 +11,7 @@ public class CartTest{
   Item item4;
   Item item5;
   Customer customer;
+  Customer customer2;
   
 
   @Before
@@ -21,7 +22,8 @@ public class CartTest{
     item3 = new Item("boots", 30.00, 1, false);
     item4 = new Item("boots", 20.00, 2, false);
     item5 = new Item("boots", 10.00, 1, true);
-    customer= new Customer("julia", false);
+    customer= new Customer("julia", true);
+    customer2= new Customer("julia", false);
     cart.addToBasket(item1);
     cart.addToBasket(item2);
   }
@@ -37,6 +39,14 @@ public class CartTest{
     cart.removeItem(item2);
     assertEquals(1, cart.countItems());
   }
+ 
+  @Test
+  public void baskedIsClearTest(){
+    cart.clearCart();
+    assertEquals(0, cart.countItems());
+  }
+  
+
 
   @Test
   public void getTotalPriceTest()
@@ -129,20 +139,37 @@ public class CartTest{
    assertEquals(32.40, cart.tenPcDiscount(), 0.01);
  }
   
-  
+
   @Test
   public void applyLCdiscountTest(){
-    cart.addToBasket(item3);
-    assertEquals(31.752, cart.applyLCdiscount(customer), 0.01);
+    assertEquals(5.88, cart.applyLCdiscount(customer), 0.01);
   }
-
   
   @Test
-  public void applyLCdiscount2Test(){
+  public void applyLCdiscountTest2(){
     cart.addToBasket(item3);
-    cart.addToBasket(item4);
     assertEquals(31.752, cart.applyLCdiscount(customer), 0.01);
   }
+  
+  @Test
+  public void applyLCdiscountNoLCTest(){
+    assertEquals(6.00, cart.applyLCdiscount(customer2), 0.01);
+  }
+
+  @Test
+  public void applyLCdiscountNoLCTest2(){
+    cart.addToBasket(item3);
+    assertEquals(32.4, cart.applyLCdiscount(customer2), 0.01);
+  }
+
+
+  
+  // @Test
+  // public void applyLCdiscount2Test(){
+  //   cart.addToBasket(item3);
+  //   cart.addToBasket(item4);
+  //   assertEquals(31.752, cart.applyLCdiscount(customer), 0.01);
+  // }
 
 
 

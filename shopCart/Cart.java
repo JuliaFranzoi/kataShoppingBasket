@@ -22,6 +22,10 @@ public class Cart{
     return basket.size();
   }
 
+  public void clearCart(){
+    basket.clear();
+  }
+
 
   public double getTotalPrice(){
     double totalPrice = 0.0;
